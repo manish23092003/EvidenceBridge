@@ -43,39 +43,45 @@
 ## Milestone 1 — Supplier Intake
 
 ### T1.1 Domain schemas
-- [ ] Supplier model
-- [ ] VerificationRequest model
-- [ ] Claim model
-- [ ] Evidence model
-- [ ] Finding model
-
+- [x] Supplier model
+- [x] VerificationRequest model
+- [x] Claim model
+- [x] Evidence model
+- [x] Finding model
 ### T1.2 Intake API
-- [ ] Create verification request endpoint
-- [ ] Validate supplier fields
-- [ ] Validate amount
-- [ ] Add API tests
+- [x] Create verification request endpoint
+- [x] Validate supplier fields
+- [x] Validate amount
+- [x] Add API tests
 
-### T1.3 Basic UI
-- [ ] Supplier form
-- [ ] Document upload
-- [ ] Validation messages
-- [ ] Start verification CTA
+### [~] T1.3 Basic UI — DronaHQ implementation pending manual setup
+- [~] Supplier form
+- [~] Document upload
+- [~] Validation messages
+- [~] Start verification CTA
+
+> DronaHQ UI specification prepared, but the cloud-hosted application has not yet been manually created and verified. Backend/API integration is ready.
 
 ## Milestone 2 — Document Processing
 
 ### T2.1 PDF service
-- [ ] Install/configure PyMuPDF
-- [ ] Extract text
-- [ ] Handle empty/scanned PDFs gracefully
-- [ ] Add file size/type validation
+- [x] Install/configure PyMuPDF
+- [x] Extract text
+- [x] Handle empty/scanned PDFs gracefully
+- [x] Add file size/type validation
+### T2.2 Document Intake
+- [x] Create document upload endpoint
+- [x] Validate PDF contents
+- [x] Integrate PDF service
+- [x] Map exceptions to HTTP errors
 
-### T2.2 Claim extraction
-- [ ] Define extraction prompt/schema
-- [ ] Extract supplier claims
-- [ ] Normalize fields
-- [ ] Validate structured response
+### T2.3 Claim extraction
+- [x] Define extraction prompt/schema
+- [x] Extract supplier claims
+- [x] Normalize fields
+- [x] Validate structured response
 
-### T2.3 Tests
+### T2.4 Tests
 - [ ] Unit test text extraction
 - [ ] Unit test claim normalization
 - [ ] Test malformed extraction response
@@ -83,36 +89,35 @@
 ## Milestone 3 — Web Research
 
 ### T3.1 Provider adapter
-- [ ] Create research provider interface
-- [ ] Create Anakin adapter
-- [ ] Configure API credentials securely
-- [ ] Normalize Anakin responses into Evidence objects
+- [x] Create research provider interface
+- [x] Create Anakin adapter
+- [x] Configure API credentials securely
+- [x] Normalize Anakin responses into Evidence objects
 
 ### T3.2 Research planner
-- [ ] Generate focused supplier queries
-- [ ] Research key fields
-- [ ] Deduplicate sources
+- [x] Generate focused supplier queries
+- [x] Control query volume
+- [x] Map claims to queries
 - [ ] Store retrieval timestamps
 
-### T3.3 Failure handling
-- [ ] Provider timeout handling
-- [ ] Empty-result handling
-- [ ] Rate/error handling
+### T3.3 Research Orchestration
+- [x] Integrate Research Planner and Web Provider
+- [x] Process multiple queries securely
+- [x] Isolate Provider Failures gracefully
 
 ## Milestone 4 — Evidence Comparison
 
-### T4.1 Normalization
-- [ ] Company-name normalization
-- [ ] URL normalization
-- [ ] Phone normalization
-- [ ] Address normalization
+### T4.1 Evidence normalization
+- [x] Create Evidence domain service
+- [x] Trace research results to claims
+- [x] Standardize evidence objects
 
 ### T4.2 Comparison engine
-- [ ] Compare names
-- [ ] Compare address/location
-- [ ] Compare domain
-- [ ] Compare phone/email
-- [ ] Compare product/service
+- [x] Compare names
+- [x] Compare address/location
+- [x] Compare domain
+- [x] Compare phone/email
+- [x] Compare product/service
 
 ### T4.3 Finding classification
 - [ ] CONSISTENT
