@@ -1,7 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.api.claims import router as claims_router
+from app.api.comparison import router as comparison_router
 from app.api.documents import router as documents_router
+from app.api.evidence import router as evidence_router
 from app.api.health import router as health_router
 from app.api.report import router as report_router
 from app.api.research import router as research_router
@@ -25,5 +28,8 @@ app.add_middleware(
 app.include_router(health_router)
 app.include_router(verification_router)
 app.include_router(documents_router)
+app.include_router(claims_router)
 app.include_router(research_router)
+app.include_router(evidence_router)
+app.include_router(comparison_router)
 app.include_router(report_router)

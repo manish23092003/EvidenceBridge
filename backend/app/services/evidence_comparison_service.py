@@ -9,21 +9,27 @@ from app.schemas.evidence_comparison import ComparisonEvaluation
 from app.schemas.finding import Finding, FindingStatus, utc_now
 
 COMPARISON_SYSTEM_PROMPT = """You are a rigorous, objective data comparison engine. 
-Your task is to compare a supplier's explicitly stated 'Claim' against a provided set of 'Evidence' items gathered from the web.
+Your task is to compare a supplier's explicitly stated 'Claim' against a provided 
+set of 'Evidence' items gathered from the web.
 
 You must output a structured evaluation matching the ComparisonEvaluation schema.
 
 RULES:
-1. ONLY evaluate based on the provided evidence. DO NOT use external knowledge. DO NOT invent facts.
+1. ONLY evaluate based on the provided evidence. DO NOT use external 
+   knowledge. DO NOT invent facts.
 2. The 'status' must be one of:
    - CONSISTENT: The evidence clearly and directly supports the claim.
    - MISMATCH: The evidence clearly contradicts the claim.
-   - NEEDS_VERIFICATION: The evidence is ambiguous, partial, or does not clearly prove or disprove the claim.
+   - NEEDS_VERIFICATION: The evidence is ambiguous, partial, or does not 
+     clearly prove or disprove the claim.
    - NOT_FOUND: No relevant evidence was provided to evaluate the claim.
 3. The 'explanation' must be concise and reference the evidence.
-4. The 'evidence_ids' MUST ONLY contain IDs from the provided evidence list. DO NOT invent IDs.
-5. You MUST NEVER declare a supplier "trustworthy", "fraudulent", or "legitimate". You are ONLY evaluating the specific field provided.
-6. The 'evidence_value' should be a short quote or value extracted directly from the evidence that supports the conclusion.
+4. The 'evidence_ids' MUST ONLY contain IDs from the provided evidence 
+   list. DO NOT invent IDs.
+5. You MUST NEVER declare a supplier "trustworthy", "fraudulent", or 
+   "legitimate". You are ONLY evaluating the specific field provided.
+6. The 'evidence_value' should be a short quote or value extracted directly 
+   from the evidence that supports the conclusion.
 """
 
 
@@ -100,7 +106,10 @@ class EvidenceComparisonService:
                         status=FindingStatus.NEEDS_VERIFICATION,
                         claim_value=claim.value,
                         evidence_value=None,
-                        explanation="Failed to automatically compare evidence. Manual verification required.",
+                        explanation=(
+                            "Failed to automatically compare evidence. "
+                            "Manual verification required."
+                        ),
                         evidence_ids=valid_evidence_ids,
                         created_at=utc_now(),
                     )

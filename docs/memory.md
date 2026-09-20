@@ -233,7 +233,13 @@ At the end of each significant coding session, update:
   - **Constraints:** Strict error handling intercepts HTTP timeouts and rate limits, replacing them with safe messages. Failed provider queries result in `FAILED` statuses without halting the entire pipeline.
   - **Traceability:** Results correctly maintain original `claim_ids`, preparing for evidence mapping.
 
-**Next implementation task:** T5.2 UI Integration (or T6 DronaHQ Integration depending on hackathon flow)
+**Next implementation task:** T6 DronaHQ UI Workflow implementation
+
+- **DronaHQ Artisan API Adapters Complete:**
+  - **Schema:** Defined `ClaimExtractionRequest`, `EvidenceNormalizationRequest`, and `EvidenceComparisonRequest`.
+  - **Tooling:** Implemented `api/claims.py`, `api/evidence.py`, and `api/comparison.py` to securely adapt core Python services to REST endpoints.
+  - **Constraints:** Pure Dependency Injection used to inject `ClaimExtractionService`, `EvidenceService`, and `EvidenceComparisonService`. Preserves the separation of business logic from HTTP mechanics. Explicitly hides exceptions safely behind generic 500 mapping.
+  - **API:** Verified `POST /api/v1/claims/extract`, `POST /api/v1/evidence/normalize`, and `POST /api/v1/evidence/compare` are present in OpenAPI documentation for downstream DronaHQ consumption.
 
 - **T5.1 & T5.3 Report Generation Complete:**
   - **Schema:** Defined `VerificationReport` containing deterministic `VerificationReportSummary`, `ReportFinding`, and recommended actions in `report.py`.

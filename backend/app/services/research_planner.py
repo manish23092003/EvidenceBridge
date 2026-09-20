@@ -106,7 +106,8 @@ class ResearchPlannerService:
 
         # Sort the accumulated queries
         # 1. By Purpose Priority
-        # 2. Then alphabetically by query string (for deterministic output within the same priority)
+        # 2. Then alphabetically by query string (for deterministic output
+        # within the same priority)
         sorted_queries = sorted(
             queries_dict.values(), key=lambda rq: (rq.purpose.priority(), rq.query)
         )

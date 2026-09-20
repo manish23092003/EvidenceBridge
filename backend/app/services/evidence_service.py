@@ -45,7 +45,8 @@ class EvidenceService:
 
             verification_id = primary_claim.verification_id
 
-            # If multiple claims, we can just use the purpose or the primary claim's field
+            # If multiple claims, we can just use the purpose or
+            # the primary claim's field.
             # The prompt example shows field="address" which matches the claim.
             field = primary_claim.field
 

@@ -3,17 +3,17 @@ from app.schemas.finding import Finding, FindingStatus
 from app.schemas.report import (
     ReportEvidenceReference,
     ReportFinding,
+    ReportSupplierContext,
     VerificationReport,
     VerificationReportSummary,
 )
-from app.schemas.supplier import Supplier
 
 
 class ReportService:
     def generate_report(
         self,
         verification_id: str,
-        supplier: Supplier,
+        supplier: ReportSupplierContext,
         purchase_amount: float | None,
         currency: str | None,
         findings: list[Finding],
@@ -103,16 +103,25 @@ class ReportService:
             if field == "website":
                 return "Ask the supplier to confirm the official business website."
             if field == "supplier_name":
-                return "Request an official incorporation certificate to verify the legal entity name."
+                return (
+                    "Request an official incorporation certificate to "
+                    "verify the legal entity name."
+                )
             if field in ["phone", "email"]:
-                return "Verify the provided contact details by attempting direct communication."
+                return (
+                    "Verify the provided contact details by attempting "
+                    "direct communication."
+                )
             return f"Request clarification regarding the mismatch in {field}."
 
         if status == FindingStatus.NOT_FOUND:
             if field == "gst_number":
                 return "Request the supplier's GST certificate."
             if field == "website":
-                return "Check if the supplier operates exclusively offline or under a parent company."
+                return (
+                    "Check if the supplier operates exclusively offline "
+                    "or under a parent company."
+                )
             return f"Request documentation to support the claim for {field}."
 
         if status == FindingStatus.NEEDS_VERIFICATION:

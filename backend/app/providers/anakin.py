@@ -64,6 +64,8 @@ class AnakinProvider(WebResearchProvider):
                     "Anakin authentication failed. Check API key."
                 ) from e
             elif status == 429:
+                # If this fails, wait a bit and retry.
+                # If we exhaust retries, it raises the last exception.
                 raise WebResearchRateLimitError("Anakin rate limit exceeded.") from e
             else:
                 raise WebResearchProviderError(
@@ -85,8 +87,9 @@ class AnakinProvider(WebResearchProvider):
     def _parse_response(self, query: str, data: dict[str, Any]) -> SearchResult:
         items = []
 
-        # Depending on Anakin's exact schema, the results usually come in a data/results list
-        # We will parse assuming standard JSON layout or fallback safely if no results exist
+        # Depending on Anakin's exact schema, the results usually come in a
+        # data/results list. We will parse assuming standard JSON layout or
+        # fallback safely if no results exist.
         raw_results = (
             data.get("data", {}).get("results", [])
             if "data" in data

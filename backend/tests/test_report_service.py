@@ -1,11 +1,11 @@
 from app.schemas.evidence import Evidence, EvidenceSourceType
 from app.schemas.finding import Finding, FindingStatus
-from app.schemas.supplier import Supplier
+from app.schemas.report import ReportSupplierContext
 from app.services.report_service import ReportService
 
 
 def create_supplier():
-    return Supplier(name="ABC Corp", email="test@abc.com")
+    return ReportSupplierContext(name="ABC Corp", email="test@abc.com")
 
 
 def create_finding(

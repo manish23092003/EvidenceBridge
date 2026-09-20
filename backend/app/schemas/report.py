@@ -4,7 +4,6 @@ from pydantic import BaseModel, Field
 
 from app.schemas.evidence import Evidence
 from app.schemas.finding import Finding, FindingStatus
-from app.schemas.supplier import Supplier
 
 
 def utc_now() -> datetime:
@@ -35,6 +34,14 @@ class ReportFinding(BaseModel):
     sources: list[ReportEvidenceReference] = Field(default_factory=list)
 
 
+class ReportSupplierContext(BaseModel):
+    name: str | None = None
+    email: str | None = None
+    phone: str | None = None
+    website: str | None = None
+    address: str | None = None
+
+
 class VerificationReport(BaseModel):
     verification_id: str
     supplier_name: str
@@ -48,7 +55,7 @@ class VerificationReport(BaseModel):
 
 class ReportRequest(BaseModel):
     verification_id: str
-    supplier: Supplier
+    supplier: ReportSupplierContext
     purchase_amount: float | None = None
     currency: str | None = None
     findings: list[Finding]

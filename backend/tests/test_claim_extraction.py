@@ -43,7 +43,10 @@ def test_valid_extraction_multiple_claims():
     service = ClaimExtractionService(provider)
 
     claims = service.extract_claims(
-        "ABC Industrial Solutions in Bengaluru quoted ₹180000 for CNC component with 50% advance.",
+        (
+            "ABC Industrial Solutions in Bengaluru quoted ₹180000 for CNC "
+            "component with 50% advance."
+        ),
         "ver-123",
     )
 

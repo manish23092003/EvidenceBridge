@@ -17,12 +17,17 @@ class GeminiProvider(LLMProvider):
         self.api_key = api_key or settings.gemini_api_key
         self.model = model or settings.gemini_model
 
-        # Note: If no api_key is provided, genai.Client() will look for GOOGLE_API_KEY env var
-        # Since we use GEMINI_API_KEY, we pass it explicitly if available.
-        if self.api_key:
-            self.client = genai.Client(api_key=self.api_key)
-        else:
-            self.client = genai.Client()
+        # Initialize lazily to prevent validation errors during dependency injection
+        self._client: genai.Client | None = None
+
+    @property
+    def client(self) -> genai.Client:
+        if self._client is None:
+            if self.api_key:
+                self._client = genai.Client(api_key=self.api_key)
+            else:
+                self._client = genai.Client()
+        return self._client
 
     def extract_structured(
         self,
