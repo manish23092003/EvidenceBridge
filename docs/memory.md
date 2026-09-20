@@ -233,7 +233,13 @@ At the end of each significant coding session, update:
   - **Constraints:** Strict error handling intercepts HTTP timeouts and rate limits, replacing them with safe messages. Failed provider queries result in `FAILED` statuses without halting the entire pipeline.
   - **Traceability:** Results correctly maintain original `claim_ids`, preparing for evidence mapping.
 
-**Next implementation task:** T4.3 Failure handling or T5 Verification Reporting (whichever task follows T4.2)
+**Next implementation task:** T5.2 UI Integration (or T6 DronaHQ Integration depending on hackathon flow)
+
+- **T5.1 & T5.3 Report Generation Complete:**
+  - **Schema:** Defined `VerificationReport` containing deterministic `VerificationReportSummary`, `ReportFinding`, and recommended actions in `report.py`.
+  - **Tooling:** Implemented `ReportService` that counts `FindingStatus` directly to prevent hallucinations. Generates dynamic verification actions via hardcoded rule sets.
+  - **Constraints:** Guarantees zero LLM or Web Research calls occur in the report phase. Preserves original comparison explanations and correctly links UI-ready `source_url` properties to finding evidence IDs.
+  - **API:** Exposed `POST /api/v1/report` safely passing dependencies via FastAPI.
 
 - **T4.2 Evidence Comparison Engine Complete:**
   - **Schema:** Defined `ComparisonEvaluation` matching `FindingStatus` enum (CONSISTENT, MISMATCH, NEEDS_VERIFICATION, NOT_FOUND).

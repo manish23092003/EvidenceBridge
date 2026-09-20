@@ -135,10 +135,10 @@
 ## Milestone 5 — Report
 
 ### T5.1 Report schema
-- [ ] Summary
-- [ ] Finding list
-- [ ] Evidence references
-- [ ] Recommended actions
+- [x] Summary
+- [x] Finding list
+- [x] Evidence references
+- [x] Recommended actions
 
 ### T5.2 UI
 - [ ] Summary cards
@@ -147,8 +147,8 @@
 - [ ] Source links
 
 ### T5.3 Action generator
-- [ ] Checklist generation
-- [ ] Verification message
+- [x] Checklist generation
+- [x] Verification message
 - [ ] Copy-to-clipboard
 
 ## Milestone 6 — DronaHQ Integration
